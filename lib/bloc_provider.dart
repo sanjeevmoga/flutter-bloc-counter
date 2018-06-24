@@ -2,19 +2,19 @@ import 'package:flutter/widgets.dart';
 import 'bloc.dart';
 
 class BlocProvider extends InheritedWidget {
-  final AndyBloc andyBloc;
+  final CounterBloc counterBloc;
 
   BlocProvider({
     Key key,
-    AndyBloc andyBloc,
+    CounterBloc counterBloc,
     Widget child,
-  })  : andyBloc = andyBloc ?? AndyBloc(),
+  })  : counterBloc = counterBloc ?? CounterBloc(),
         super(key: key, child: child);
 
   @override
   bool updateShouldNotify(InheritedWidget oldWidget) => true;
 
-  static AndyBloc of(BuildContext context) =>
+  static CounterBloc of(BuildContext context) =>
       (context.inheritFromWidgetOfExactType(BlocProvider) as BlocProvider)
-          .andyBloc;
+          .counterBloc;
 }

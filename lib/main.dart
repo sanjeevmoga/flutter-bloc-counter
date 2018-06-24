@@ -13,20 +13,23 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: AndyPage(),
+      home: new MyHomePage(title: 'Flutter Home Demo Page'),
       ),
     );
   }
 }
 
-class AndyPage extends StatelessWidget {
+class MyHomePage extends StatelessWidget {
+  MyHomePage({Key key, this.title}) : super(key: key);
+  final String title;
+
   @override
   Widget build(BuildContext context) {
-    final andyBloc = BlocProvider.of(context);
+    final counterBloc = BlocProvider.of(context);
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Hello'),
+        title: Text(this.title),
       ),
       body: Center(
         child: Column(
@@ -36,7 +39,7 @@ class AndyPage extends StatelessWidget {
               'You have pushed the button this many times:',
             ),
             StreamBuilder(
-                stream: andyBloc.count,
+                stream: counterBloc.count,
                 initialData: 0,
                 builder: (context, snapshot) => Text(
                       snapshot.data.toString(),
@@ -48,7 +51,7 @@ class AndyPage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          andyBloc.countAdd.add(1);
+          counterBloc.countAdd.add(1);
         },
         tooltip: 'Increment',
         child: Icon(Icons.add),

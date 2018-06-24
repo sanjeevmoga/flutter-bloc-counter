@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:rxdart/subjects.dart';
 
-class AndyBloc {
+class CounterBloc {
 
   final BehaviorSubject<int> _count =
     BehaviorSubject<int>(seedValue: 0);
@@ -9,7 +9,7 @@ class AndyBloc {
   final StreamController<int> _countController =
       StreamController<int>();
 
-  AndyBloc() {
+  CounterBloc() {
     _countController.stream.listen((event) {
       _count.add(_count.value + 1);
     });
